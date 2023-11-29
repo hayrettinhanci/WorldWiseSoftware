@@ -1,5 +1,12 @@
-package com.project.worldwise;
+package com.project.worldwise.controller;
 
+import com.project.worldwise.dto.MapToPopulation;
+import com.project.worldwise.dto.CountryDTO;
+import com.project.worldwise.model.City;
+import com.project.worldwise.model.Country;
+import com.project.worldwise.repository.CountryRepository;
+import com.project.worldwise.service.CityService;
+import com.project.worldwise.service.CountryService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,17 +37,6 @@ public class CountryController {
         return "Data Inserted";
     }
 
-    @PostMapping("city-details")
-    public String saveCityDetails(@RequestBody List<City> cities) {
-        System.out.println("city list: " + cities);
-
-        for (City city : cities) {
-            System.out.println(city.getCityName()+" "+ city.getCityPopulation());
-            countryService.saveCity(city);
-        }
-        return "City Details Inserted";
-    }
-
     @GetMapping("countries")
     public List<Country> getCountries() {
 
@@ -65,15 +61,10 @@ public class CountryController {
         return "The country with the " + id + " id number was deleted";
     }
 
-    //  @GetMapping("countries/category/{category}")
-    // public List<Country> getCountriesByCategory(@PathVariable String countryName) {
-    // Validate countryName if needed
-    // return countryService.getCountriesByCategory(countryName);
-    // }
     @GetMapping("countries/{population}")
     public List<CountryDTO> getCountriesWithPopulation(@PathVariable int population) {
-        return new MapToPopulation.MappingStatic().getCountriesWithPopulation(population);
-      // return countryService.getCountriesWithPopulation(population);
+
+      return countryService.getCountriesWithPopulation(population);
 
     }
 

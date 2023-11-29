@@ -1,15 +1,16 @@
-package com.project.worldwise;
+package com.project.worldwise.service;
 
-import com.project.worldwise.CountryDTO;
-import com.project.worldwise.City;
-import com.project.worldwise.Country;
-import com.project.worldwise.CityRepository;
-import com.project.worldwise.CountryRepository;
+import com.project.worldwise.dto.CountryDTO;
+import com.project.worldwise.dto.MapToPopulation;
+import com.project.worldwise.model.City;
+import com.project.worldwise.model.Country;
+import com.project.worldwise.repository.CityRepository;
+import com.project.worldwise.repository.CountryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,11 +43,15 @@ public class CountryService {
        countryRepository.deleteById(id);
 
     }
+    public List<CountryDTO> getCountriesWithPopulation(int population) {
+        List<Country> countries = countryRepository.findAll();
+        return MapToPopulation.getCountriesWithPopulation(countries, population);
 
 
-    public void saveCity(City city) {
-        cityRepository.save(city);
     }
+
+
+
 
 
 

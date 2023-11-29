@@ -1,4 +1,4 @@
-package com.project.worldwise;
+package com.project.worldwise.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

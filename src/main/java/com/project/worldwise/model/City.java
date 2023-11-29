@@ -1,4 +1,4 @@
-package com.project.worldwise;
+package com.project.worldwise.model;
 
 import lombok.Data;
 import lombok.Getter;
@@ -13,11 +13,10 @@ import javax.persistence.*;
 @Data
 public class City {
     @Id
-    @GeneratedValue
     Long cityId;
     String cityName;
     int cityPopulation;
-    @ManyToOne
-    @JoinColumn(name = "country_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id",referencedColumnName = "id")
     private Country country;
 }

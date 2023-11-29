@@ -1,10 +1,7 @@
-package com.project.worldwise;
-import com.project.worldwise.City;
-import com.project.worldwise.Country;
-import com.project.worldwise.CityRepository;
+package com.project.worldwise.service;
+import com.project.worldwise.model.City;
+import com.project.worldwise.repository.CityRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
@@ -19,5 +16,10 @@ public class CityService {
         }
         return "Country not found";
     }
+    public void saveCity(City city) {
+        cityRepository.save(city);
+    }
+
+
 
 }

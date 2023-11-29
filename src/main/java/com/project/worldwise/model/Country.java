@@ -1,6 +1,6 @@
-package com.project.worldwise;
+package com.project.worldwise.model;
 
-import com.project.worldwise.City;
+import com.project.worldwise.model.City;
 import lombok.Data;
 import lombok.Getter;
 
@@ -19,9 +19,10 @@ public class Country {
     int numberOfCities;
     int temperature;
     String briefInformation;
-
-    @OneToMany(mappedBy = "country")
-    private List<City> cities= new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "country_id",referencedColumnName = "id")
+   // @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
+    private List<City> cities;
 
     public void setId(long id) {
         this.id = id;
